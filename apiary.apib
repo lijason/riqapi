@@ -1,0 +1,46 @@
+HOST: https://www.relateiq.com/api/v1
+
+--- RelateIQ API Alpha v1 ---
+---
+Welcome to our alpha v1 API.
+---
+
+--
+List Resources
+The following is a section of resources related to the lists
+--
+Retrieve all lists you can see
+GET /entitylists
+< 200
+< Content-Type: application/json
+{   
+    "success": true, 
+    "result": {
+        "id": "3ebd05233434b301d30b6788"
+    } 
+}
+
+Set field values for existing relationships
+POST /entitylists/{listid}/fieldValues
+> Content-Type: application/json
+{ 
+    "matchBy":"id", 
+    "data": [
+        {
+            "id": "4ebd05233434b301d30b6788",
+            "10": "myexternalid1"
+        },
+        {
+            "id": "4ebd05233434b301d30b6788",
+            "10": "myexternalid1"
+        }        
+    ] 
+}
+< 200
+< Content-Type: application/json
+{   
+    "success": true, 
+    "result": {
+        "id": "3ebd05233434b301d30b6788"
+    } 
+}
