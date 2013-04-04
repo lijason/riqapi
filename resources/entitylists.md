@@ -99,8 +99,8 @@ curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b678
 -H 'Content-Type: application/json' \
 -d '{   "matchBy": "id",
     "data": [
-{"id":"4f31eb19f5b0fe947bb774fd", "10":"myexternalid1"},
-{"id":"4fd0e101e4b0df313520bc9a", "10":"myexternalid2"}
+{"id":"3f31eb19f5b0fe947bb774fd", "10":"myexternalid1"},
+{"id":"3fd0e101e4b0df313520bc9a", "10":"myexternalid2"}
 ]}'
 ```
 
@@ -123,7 +123,7 @@ curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b678
 {
     "result": {
         "notFoundMatches": ["myexternalid1"],
-        "updatedIds": ["4f31eb19e4b0fd947bb774fd"],
+        "updatedIds": ["3f31eb19e4b0fd947bb774fd"],
         "unchangedIds": []
     },
     "message": null,
