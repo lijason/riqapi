@@ -70,13 +70,16 @@ POST https://www.relateiq.com/api/v1/[listid]/fieldValues
 ```
 
 ### Arguments
-Required (json document)
-data - an array of objects that represent existing relationships on the list, where the properties of this object represent the values you want to use to match to existing relationships and the values you want to set.
-matchBy - can be “id”, “email”, or one of the field ids in the list (e.g. “3”,“10”, etc. you can find field ids by querying the Fields api endpoint) This value chooses which property of the data array objects is used to match to existing relationships.
+
+#### Required (json document)
+
+**data** - an array of objects that represent existing relationships on the list, where the properties of this object represent the values you want to use to match to existing relationships and the values you want to set.
+
+**matchBy** - can be “id”, “email”, or one of the field ids in the list (e.g. “3”,“10”, etc. you can find field ids by querying the Fields api endpoint) This value chooses which property of the data array objects is used to match to existing relationships.
 
 ### Response
-All responses are returned as JSON documents, wrapped in a standard formatted envelope that contains a result object, a boolean representing success (false means failure), and optionally a message describing the failure.
 
+All responses are returned as JSON documents, wrapped in a standard formatted envelope that contains a result object, a boolean representing success (false means failure), and optionally a message describing the failure.
 
 ### Request Examples
 
@@ -126,6 +129,90 @@ curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b678
 {
     result: {}
     message: "Invalid list specified"
+    success: false
+}
+```
+
+## Create Comment Event
+
+### Definition
+
+```
+POST https://www.relateiq.com/api/v1/[listid]/commentbyemail
+```
+
+### Arguments
+
+#### Required
+
+**relationshipemail** - The email address to use to find relationships in the specified list, all matches will receive the comment event
+
+**body** - The body of the comment event
+
+**authoremailoverride** - By default, the user whose apitoken is used will be the author of this comment/event. You may override it with this parameter.
+
+**timeoverride** - By default, the current time will be used. You may override it by setting this parameter to milliseconds since epoch.
+
+### Response
+
+All responses are returned as JSON documents, wrapped in a standard formatted envelope that contains a result object, a boolean representing success (false means failure), and optionally a message describing the failure.
+
+### Request Examples
+
+```
+curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b6788/commentbyemail \
+    -u apitoken:[apitoken] \
+    -d relationshipemail="test@test.com" \
+    -d body="some new comment" \
+    -d authoremailoverride="author@company.com" \
+    -d timeoverride=1354907499000
+```
+
+### Response Example
+
+#### All events that are created are returned
+
+```
+{
+    "result": [{
+        "contributionType": "All",
+        "props": {
+            "uid": "3e9ccaf434347446186680cb",
+            "body": "abc\n\n(created via API by Your User Name)"
+        },
+        "mine": false,
+        "maybeMine": false,
+        "bodyResourceId": null,
+        "fromKid": null,
+        "toKids": [],
+        "cckids": [],
+        "bcckids": [],
+        "prettyType": "comment",
+        "eventDisplayMode": "Mini",
+        "future": false,
+        "unread": false,
+        "type": "comment",
+        "time": 1354907499000,
+        "listId": "3ebd05233434b301d30b6788",
+        "memberId": "31310afbe4b0e853408c1c9f",
+        "keyIds": ["3ec0b63c3434819b92dcfda0"],
+        "userContributions": [],
+        "originalType": null,
+        "id": null
+    }],
+    "message": null,
+    "success": true
+}
+```
+
+### Error Example
+
+#### For example, if no relationship is found with relationshipemail, you will receive:
+
+```
+{
+    result: {}
+    message: "no comments created"
     success: false
 }
 ```
