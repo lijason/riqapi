@@ -186,7 +186,7 @@ curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b678
         "contributionType": "All",
         "props": {
             "uid": "3e9ccaf434347446186680cb",
-            "body": "abc\n\n(created via API by Your User Name)"
+            "body": "some new comment\n\n(created via API by Your User Name)"
         },
         "mine": false,
         "maybeMine": false,
