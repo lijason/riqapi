@@ -1,3 +1,5 @@
+**Warning: This is an alpha version of the RIQ API and we don't yet make commitments to preserve backwards compatibility.**
+
 Entity Lists
 ============
 
