@@ -13,7 +13,7 @@ POST https://www.relateiq.com/api/v1/entitylists/{listid}/addrelationship
 
 #### Required
 
-**listid** - the id of the list you want to modify. the easiest way to find this is to click on the list in the web app and pull it from the url: https://www.relateiq.com/#list:l=3ebd05233434b301d30b6788
+**listid** - the id of the list you want to modify. the easiest way to find this is to click on the list in the web app and pull it from the url (e.g. https://www.relateiq.com/#list:l= **3ebd05233434b301d30b6788**)
 
 **firstName** - the first (or full) name of the contact to add
 
