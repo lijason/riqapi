@@ -5,11 +5,69 @@ Entity Lists
 
 ## Endpoints
 
+[Get Lists](#get-lists)
+
 [Add Relationship](#add-relationship)
 
 [Set Field Values](#set-field-values)
 
 [Create Comment Event](#create-comment-event)
+
+## Get Lists
+
+### Definition
+
+```
+GET https://www.relateiq.com/api/v1/entitylists/{listids}
+```
+
+### Arguments
+
+#### Optional
+
+**listids** - comma separated list of ids, if none are specified, this returns all lists.
+
+**excludeMembers** - set to 'true' to not return list members, this is preferred as it is much faster and smaller.
+
+**lastModified** - only returns lists modified since this date (represented as millis since epoch)
+
+### Request Examples
+
+```bash
+curl -X GET https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b6788,3ebd05393434b301d30a6788 \
+  -u apitoken:[apitoken] \
+  -d "excludeMembers=true"
+```
+
+### Response Example
+
+```javascript
+{
+    result: {[{
+            "id": "3ebd05233434b301d30b6788",
+            "title": "List 1",
+            "fields": [...],
+            ...
+        },{
+            "id": "3ebd05393434b301d30a6788",
+            "title": "List 2",
+            "fields": [...],
+            ...
+        }
+    ]},
+    success: true
+}
+```
+
+### Error Example
+
+```javascript
+{
+    result: {}
+    message: "invalid list specified"
+    success: false
+}
+```
 
 ## Add Relationship
 
@@ -23,18 +81,18 @@ POST https://www.relateiq.com/api/v1/entitylists/{listid}/addrelationship
 
 #### Required
 
-**listid** - the id of the list you want to modify. the easiest way to find this is to click on the list in the web app and pull it from the url (e.g. https://www.relateiq.com/#list:l= **3ebd05233434b301d30b6788**)
+**listid** - The id of the list you want to modify. one easy way to find this is to navigate to the list in the web app. The listid is in the url (e.g. https://www.relateiq.com/#list:l= **3ebd05233434b301d30b6788**).
 
-**firstName** - the first (or full) name of the contact to add
+**firstName** - The first (or full) name of the contact to add.
 
 #### Optional
-**lastName** - the last name of the contact to add
+**lastName** - The last name of the contact to add.
 
-**relationshipName** - if the relationship represents a company
+**relationshipName** - If the relationship represents a company, this is the company name.
 
-**email** - the email address of the contact
+**email** - The email address of the contact.
 
-**phone** - the phone number of the contact
+**phone** - The phone number of the contact.
 
 ### Request Examples
 
@@ -83,9 +141,9 @@ POST https://www.relateiq.com/api/v1/[listid]/fieldValues
 
 #### Required (json document)
 
-**data** - an array of objects that represent existing relationships on the list, where the properties of this object represent the values you want to use to match to existing relationships and the values you want to set.
+**data** - An array of objects that represent existing relationships on the list, where the properties of this object represent the values you want to use to match to existing relationships and the values you want to set.
 
-**matchBy** - can be “id”, “email”, or one of the field ids in the list (e.g. “3”,“10”, etc. you can find field ids by querying the Fields api endpoint) This value chooses which property of the data array objects is used to match to existing relationships.
+**matchBy** - Can be “id”, “email”, or one of the field ids in the list (e.g. “3”,“10”, etc. you can find field ids by querying the Fields api endpoint). This value chooses which property of the data array objects is used to match to existing relationships.
 
 ### Response
 
@@ -155,9 +213,9 @@ POST https://www.relateiq.com/api/v1/[listid]/commentbyemail
 
 #### Required
 
-**relationshipemail** - The email address to use to find relationships in the specified list, all matches will receive the comment event
+**relationshipemail** - The email address to use to find relationships in the specified list, all matches will receive the comment event.
 
-**body** - The body of the comment event
+**body** - The body of the comment event.
 
 **authoremailoverride** - By default, the user whose apitoken is used will be the author of this comment/event. You may override it with this parameter.
 
