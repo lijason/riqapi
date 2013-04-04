@@ -1,6 +1,15 @@
 Entity Lists
 ============
 
+## Endpoints
+
+[Add Relationship](#addrelationship)
+
+[Set Field Values](#setfieldvalues)
+
+[Create Comment Event](#createcomment)
+
+<a name="addrelationship"/>
 ## Add Relationship
 
 ### Definition
@@ -28,7 +37,7 @@ POST https://www.relateiq.com/api/v1/entitylists/{listid}/addrelationship
 
 ### Request Examples
 
-```
+```javascript
 curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b6788/addrelationship \
   -u apitoken:[apitoken] \
   -d "firstName=John" \
@@ -61,6 +70,7 @@ curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b678
 }
 ```
 
+<a name="setfieldvalues"/>
 ## Set Field Values
 
 ### Definition
@@ -85,7 +95,7 @@ All responses are returned as JSON documents, wrapped in a standard formatted en
 
 #### Set Field “10” (e.g. Custom Unique Identifier) For 2 Existing Relationships, Finding Them By The Riq Relationship Id
 
-```
+```javascript
 curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b6788/addrelationship \
 -u apitoken:[apitoken] \
 -H 'Content-Type: application/json' \
@@ -98,7 +108,7 @@ curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b678
 
 #### Set Field “11” (e.g.contract Value) For 2 Existing Relationships, Finding Them By My Custom Unique Identifier
 
-```
+```javascript
 curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b6788/addrelationship \
 -u apitoken:[apitoken] \
 -H 'Content-Type: application/json' \
@@ -133,6 +143,7 @@ curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b678
 }
 ```
 
+<a name="createcomment"/>
 ## Create Comment Event
 
 ### Definition
@@ -159,7 +170,7 @@ All responses are returned as JSON documents, wrapped in a standard formatted en
 
 ### Request Examples
 
-```
+```javascript
 curl -X POST https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b6788/commentbyemail \
     -u apitoken:[apitoken] \
     -d relationshipemail="test@test.com" \
