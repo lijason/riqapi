@@ -7,6 +7,8 @@ Entity Lists
 
 [Get Lists](#get-lists)
 
+[Search Relationships](#search-relationships)
+
 [Add Relationship](#add-relationship)
 
 [Set Field Values](#set-field-values)
@@ -65,6 +67,58 @@ curl -X GET https://www.relateiq.com/api/v1/entitylists/3ebd05233434b301d30b6788
 {
     result: {}
     message: "invalid list specified"
+    success: false
+}
+```
+
+## Search Relationships
+
+### Definition
+
+```
+GET https://www.relateiq.com/api/v1/entitylists/{listid}/search?name=[name to find]
+```
+
+### Arguments
+
+#### Required (part of resource url)
+
+**listid** - the list id within which to search
+
+#### Required (query parameters)
+
+**name** - the name to search for
+
+Currently, the only property that is searchable is the name.
+
+### Request Examples
+
+```bash
+curl -X GET https://www.relateiq.com/api/v1/entitylist/3ebd05233434b301d30b6788/search?name=techqueria \
+  -u apitoken:[apitoken]
+```
+
+### Response Example
+
+```javascript
+{
+    result: {[{
+            "id": "3ebd05233434b301d30b6788",
+            "memberName": "Techqueria",
+            "fieldValuess": [...],
+            ...
+        }
+    ]},
+    success: true
+}
+```
+
+### Error Example
+
+```javascript
+{
+    result: {}
+    message: "must specify a query (e.g. name=techqueria)"
     success: false
 }
 ```
