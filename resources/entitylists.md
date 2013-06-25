@@ -137,16 +137,20 @@ POST https://www.relateiq.com/api/v1/entitylists/{listid}/addrelationship
 
 **listid** - The id of the list you want to modify. one easy way to find this is to navigate to the list in the web app. The listid is in the url (e.g. https://www.relateiq.com/#list:l= **3ebd05233434b301d30b6788**).
 
-**firstName** - The first (or full) name of the contact to add.
+**firstName** - The first (or full) name of the contact to add. This is used if there is no existing contact for the given email address or phone number.
 
-#### Optional
-**lastName** - The last name of the contact to add.
-
-**relationshipName** - If the relationship represents a company, this is the company name.
+#### Contact Details (at least one required)
 
 **email** - The email address of the contact.
 
 **phone** - The phone number of the contact.
+
+#### Optional
+
+**lastName** - The last name of the contact to add.
+
+**relationshipName** - If the relationship represents a company, this is the company name.
+
 
 ### Request Examples
 
